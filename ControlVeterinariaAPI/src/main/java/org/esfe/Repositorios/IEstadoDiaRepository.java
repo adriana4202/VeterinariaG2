@@ -1,4 +1,9 @@
-package org.esfe.repositorios;
+package org.esfe.Repositorios;
 
-public interface IEstadoDiaRepository {
+import org.esfe.modelos.EstadoDia;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
+@Repository
+public interface IEstadoDiaRepository extends JpaRepository<EstadoDia, Integer> {
 }

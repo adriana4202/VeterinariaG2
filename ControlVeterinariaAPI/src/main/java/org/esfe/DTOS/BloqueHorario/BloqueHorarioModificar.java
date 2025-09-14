@@ -1,4 +1,4 @@
-package org.esfe.dtos.BloqueHorario;
+package org.esfe.DTOS.BloqueHorario;
 
 public class BloqueHorarioModificar {
 }

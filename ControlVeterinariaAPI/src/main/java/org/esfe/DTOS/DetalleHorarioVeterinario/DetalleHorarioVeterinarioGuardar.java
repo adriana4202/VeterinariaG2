@@ -1,4 +1,4 @@
-package org.esfe.dtos.DetalleHorarioVeterinario;
+package org.esfe.DTOS.DetalleHorarioVeterinario;
 
 public class DetalleHorarioVeterinarioGuardar {
 }
