@@ -1,4 +1,4 @@
-package org.esfe.servicios.implementaciones;
+package org.esfe.Servicios.Implementaciones;
 
 public class DetalleHorarioVeterinarioService {
 }

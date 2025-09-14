@@ -1,4 +1,4 @@
-package org.esfe.repositorios;
+package org.esfe.Repositorios;
 
 public interface IBloqueHorarioRepository {
 }

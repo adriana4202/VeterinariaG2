@@ -1,4 +1,4 @@
-package org.esfe.dtos.Especialidad;
+package org.esfe.DTOS.Especialidad;
 
 public class EspecialidadModificar {
 }

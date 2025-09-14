@@ -1,4 +1,4 @@
-package org.esfe.dtos.veterinario;
+package org.esfe.DTOS.veterinario;
 
 public class VeterinarioGuardar {
 }
