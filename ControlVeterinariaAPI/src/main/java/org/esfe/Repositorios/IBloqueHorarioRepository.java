@@ -1,4 +1,7 @@
-package org.esfe.repositorios;
+package org.esfe.Repositorios;
 
-public interface IBloqueHorarioRepository {
+import org.esfe.modelos.BloqueHorario;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface IBloqueHorarioRepository extends JpaRepository<BloqueHorario, Integer> {
 }

@@ -1,4 +1,7 @@
-package org.esfe.repositorios;
+package org.esfe.Repositorios;
 
-public interface IEspecialidadRepository {
+import org.esfe.modelos.Especialidad;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface IEspecialidadRepository extends JpaRepository<Especialidad, Integer> {
 }
