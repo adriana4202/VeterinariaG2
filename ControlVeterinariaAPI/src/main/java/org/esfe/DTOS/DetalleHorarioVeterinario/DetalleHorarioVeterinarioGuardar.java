@@ -1,4 +1,16 @@
-package org.esfe.dtos.DetalleHorarioVeterinario;
+package org.esfe.DTOS.DetalleHorarioVeterinario;
 
-public class DetalleHorarioVeterinarioGuardar {
+import lombok.Getter;
+import lombok.Setter;
+
+
+import java.io.Serializable;
+
+@Setter
+@Getter
+
+public class DetalleHorarioVeterinarioGuardar implements Serializable {
+    private Integer veterinarioId;
+    private int diaId;
+    private Byte bloqueHorarioId;
 }
