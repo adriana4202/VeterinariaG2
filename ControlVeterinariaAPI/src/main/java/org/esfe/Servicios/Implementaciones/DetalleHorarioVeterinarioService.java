@@ -1,11 +1,11 @@
-//package org.esfe.Servicios.implementaciones;
+//package org.esfe.Servicios.Implementaciones;
 //
 //import org.esfe.DTOS.DetalleHorarioVeterinario.DetalleHorarioVeterinarioGuardar;
 //import org.esfe.DTOS.DetalleHorarioVeterinario.DetalleHorarioVeterinarioSalida;
 //import org.esfe.Repositorios.IDetalleHorarioVeterinarioRepository;
-////import org.esfe.Repositorios.IVeterinarioRepository;
-////import org.esfe.Repositorios.IDiaRepository;
-////import org.esfe.Repositorios.IBloqueHorarioRepository;
+//import org.esfe.Repositorios.IVeterinarioRepository;
+//import org.esfe.Repositorios.IDiaRepository;
+//import org.esfe.Repositorios.IBloqueHorarioRepository;
 //import org.esfe.Servicios.interfaces.IDetalleHorarioVeterinarioService;
 //import org.esfe.modelos.DetalleHorarioVeterinario;
 //import org.esfe.modelos.Veterinario;
