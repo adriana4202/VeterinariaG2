@@ -16,20 +16,20 @@ public class Veterinario {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "VeterinarioId")
-    private Short id;
+    private int id;
 
     @Column(name = "EspecializacionId")
-    private Byte especializacionId; // después será @ManyToOne con Especialidad
+    private int especializacionId; // después será @ManyToOne con Especialidad
 
     // -------- DATOS QUE PROVIENEN DE USUARIO (temporalmente copiados aquí) --------
     @Column(name = "NumeroLicencia", length = 60, nullable = false)
     private String numeroLicencia;
 
     @Column(name = "RolId")
-    private Byte rolId;
+    private int rolId;
 
     @Column(name = "EstadoId")
-    private Byte estadoId;
+    private int estadoId;
 
     @Column(name = "NickName", length = 60)
     private String nickName;

@@ -1,7 +1,6 @@
 package org.esfe.DTOS.veterinario;
 
 import lombok.*;
-
 import java.time.LocalDate;
 
 @Data
@@ -9,9 +8,9 @@ import java.time.LocalDate;
 @AllArgsConstructor
 @Builder
 public class VeterinarioGuardar {
-    private Byte especializacionId;
+    private int especializacionId;
     private String numeroLicencia;
-    private Byte rolId;
+    private int rolId;
     private String nickName;
     private String correo;
     private String clave;

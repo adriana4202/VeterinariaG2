@@ -5,6 +5,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
 
-public interface IVeterinarioRepository extends JpaRepository<Veterinario, Short> {
-    List<Veterinario> findByEstadoId(Byte estadoId);
+public interface IVeterinarioRepository extends JpaRepository<Veterinario, Integer> {
+    List<Veterinario> findByEstadoId(int estadoId);
 }
+

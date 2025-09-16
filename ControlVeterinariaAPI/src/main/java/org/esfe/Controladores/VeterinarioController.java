@@ -1,8 +1,10 @@
 package org.esfe.Controladores;
 
 import lombok.RequiredArgsConstructor;
+import org.esfe.DTOS.veterinario.VeterinarioGuardar;
+import org.esfe.DTOS.veterinario.VeterinarioModificar;
+import org.esfe.DTOS.veterinario.VeterinarioSalida;
 import org.esfe.Servicios.interfaces.IVeterinarioService;
-import org.esfe.modelos.Veterinario;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -17,39 +19,32 @@ public class VeterinarioController {
 
     // 🔹 Listar todos (activos e inactivos)
     @GetMapping
-    public List<Veterinario> listar() {
+    public List<VeterinarioSalida> listar() {
         return servicio.listar();
     }
 
     // 🔹 Listar solo activos
     @GetMapping("/activos")
-    public List<Veterinario> listarActivos() {
+    public List<VeterinarioSalida> listarActivos() {
         return servicio.listarActivos();
-    }
-
-    // 🔹 Listar solo inactivos
-    @GetMapping("/inactivos")
-    public List<Veterinario> listarInactivos() {
-        return servicio.listarInactivos();
     }
 
     // 🔹 Guardar nuevo veterinario
     @PostMapping
-    public Veterinario guardar(@RequestBody Veterinario veterinario) {
-        return servicio.guardar(veterinario);
+    public VeterinarioSalida guardar(@RequestBody VeterinarioGuardar dto) {
+        return servicio.guardar(dto);
     }
 
-//    // 🔹 Marcar como inactivo (soft delete)
-//    @DeleteMapping("/{id}")
-//    public ResponseEntity<String> eliminar(@PathVariable Short id) {
-//        servicio.eliminar(id);
-//        return ResponseEntity.ok("Veterinario marcado como inactivo con éxito");
-//    }
+    // 🔹 Modificar veterinario
+    @PutMapping
+    public VeterinarioSalida modificar(@RequestBody VeterinarioModificar dto) {
+        return servicio.modificar(dto);
+    }
 
-    // 🔹 Endpoint más explícito para inactivar
+    // 🔹 Inactivar (soft delete)
     @PutMapping("/{id}/inactivar")
     public ResponseEntity<String> inactivar(@PathVariable Short id) {
-        servicio.eliminar(id);
+        servicio.inactivar(id);
         return ResponseEntity.ok("Veterinario marcado como inactivo con éxito");
     }
 
