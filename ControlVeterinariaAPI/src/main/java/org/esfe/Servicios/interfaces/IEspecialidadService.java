@@ -1,4 +1,4 @@
-package org.esfe.servicios.interfaces;
+package org.esfe.Servicios.interfaces;
 
 public class IEspecialidadService {
 }
