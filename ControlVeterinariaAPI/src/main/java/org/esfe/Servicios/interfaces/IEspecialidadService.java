@@ -17,5 +17,11 @@ public interface IEspecialidadService {
     EspecialidadSalida modificar(EspecialidadModificar dto);
 
     void eliminar(Integer id);
+
+    // 👇 nuevo método para activación lógica
+    void activar(Integer id);
+
+    List<EspecialidadSalida> listarInactivos();
+
 }
 

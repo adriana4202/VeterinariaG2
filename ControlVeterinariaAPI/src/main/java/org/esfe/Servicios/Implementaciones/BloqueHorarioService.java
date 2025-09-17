@@ -19,16 +19,25 @@ public class BloqueHorarioService implements IBloqueHorarioService {
 
     @Override
     public List<BloqueHorarioSalida> listar() {
-        return repositorio.findAll().stream()
+        return repositorio.findByActivoTrue().stream()
+                .map(this::toSalidaDTO)
+                .toList();
+    }
+
+    @Override
+    public List<BloqueHorarioSalida> listarInactivos() {
+        return repositorio.findByActivoFalse().stream()
                 .map(this::toSalidaDTO)
                 .toList();
     }
 
     @Override
     public BloqueHorarioSalida buscarPorId(Integer id) {
-        return repositorio.findById(id)
-                .map(this::toSalidaDTO)
-                .orElse(null);
+        BloqueHorario bloque = repositorio.findById(id)
+                .filter(BloqueHorario::getActivo)
+                .orElseThrow(() -> new RuntimeException("BloqueHorario no encontrado o inactivo"));
+
+        return toSalidaDTO(bloque);
     }
 
     @Override
@@ -36,14 +45,17 @@ public class BloqueHorarioService implements IBloqueHorarioService {
         BloqueHorario bloque = BloqueHorario.builder()
                 .inicio(dto.getInicio())
                 .fin(dto.getFin())
+                .activo(true)
                 .build();
+
         return toSalidaDTO(repositorio.save(bloque));
     }
 
     @Override
     public BloqueHorarioSalida modificar(BloqueHorarioModificar dto) {
         BloqueHorario bloque = repositorio.findById(dto.getId())
-                .orElseThrow(() -> new RuntimeException("BloqueHorario no encontrado"));
+                .filter(BloqueHorario::getActivo)
+                .orElseThrow(() -> new RuntimeException("BloqueHorario no encontrado o inactivo"));
 
         bloque.setInicio(dto.getInicio());
         bloque.setFin(dto.getFin());
@@ -53,7 +65,20 @@ public class BloqueHorarioService implements IBloqueHorarioService {
 
     @Override
     public void eliminar(Integer id) {
-        repositorio.deleteById(id);
+        BloqueHorario bloque = repositorio.findById(id)
+                .orElseThrow(() -> new RuntimeException("BloqueHorario no encontrado"));
+
+        bloque.setActivo(false);
+        repositorio.save(bloque);
+    }
+
+    @Override
+    public void activar(Integer id) {
+        BloqueHorario bloque = repositorio.findById(id)
+                .orElseThrow(() -> new RuntimeException("BloqueHorario no encontrado"));
+
+        bloque.setActivo(true);
+        repositorio.save(bloque);
     }
 
     // ======================

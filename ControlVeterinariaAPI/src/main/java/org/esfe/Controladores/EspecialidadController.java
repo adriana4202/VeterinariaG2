@@ -1,45 +1,3 @@
-//package org.esfe.Controladores;
-//
-//import org.esfe.modelos.Especialidad;
-//import org.esfe.Servicios.interfaces.IEspecialidadService;
-//import org.springframework.http.ResponseEntity;
-//import org.springframework.web.bind.annotation.*;
-//
-//import java.util.List;
-//
-//@RestController
-//@RequestMapping("/api/especialidades")
-//public class EspecialidadController {
-//
-//    private final IEspecialidadService service;
-//
-//    public EspecialidadController(IEspecialidadService service) {
-//        this.service = service;
-//    }
-//
-//    @GetMapping
-//    public List<Especialidad> listar() {
-//        return service.listar();
-//    }
-//
-//    @GetMapping("/{id}")
-//    public ResponseEntity<Especialidad> buscarPorId(@PathVariable Byte id) {
-//        Especialidad especialidad = service.buscarPorId(id);
-//        return especialidad != null ? ResponseEntity.ok(especialidad) : ResponseEntity.notFound().build();
-//    }
-//
-//    @PostMapping
-//    public Especialidad guardar(@RequestBody Especialidad especialidad) {
-//        return service.guardar(especialidad);
-//    }
-//
-//    @DeleteMapping("/{id}")
-//    public ResponseEntity<Void> eliminar(@PathVariable Byte id) {
-//        service.eliminar(id);
-//        return ResponseEntity.noContent().build();
-//    }
-//}
-
 package org.esfe.Controladores;
 
 import lombok.RequiredArgsConstructor;
@@ -50,7 +8,9 @@ import org.esfe.Servicios.interfaces.IEspecialidadService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/api/especialidades")
@@ -59,31 +19,54 @@ public class EspecialidadController {
 
     private final IEspecialidadService service;
 
-    @GetMapping
+    @GetMapping("/activos")
     public List<EspecialidadSalida> listar() {
         return service.listar();
     }
+
+    @GetMapping("/inactivos")
+    public List<EspecialidadSalida> listarInactivos() {
+        return service.listarInactivos();
+    }
+
 
     @GetMapping("/{id}")
     public ResponseEntity<EspecialidadSalida> buscarPorId(@PathVariable Integer id) {
         return ResponseEntity.ok(service.buscarPorId(id));
     }
 
-    @PostMapping
+    @PostMapping("/Crear")
     public EspecialidadSalida guardar(@RequestBody EspecialidadGuardar dto) {
         return service.guardar(dto);
     }
 
-    @PutMapping("/{id}")
+    @PutMapping("/{id}/editar")
     public EspecialidadSalida modificar(@PathVariable Integer id, @RequestBody EspecialidadModificar dto) {
         dto.setEspecialidadId(id); // aseguramos que usemos el ID de la URL
         return service.modificar(dto);
     }
 
-    @DeleteMapping("/{id}")
-    public ResponseEntity<Void> eliminar(@PathVariable Integer id) {
-        service.eliminar(id);
-        return ResponseEntity.noContent().build();
+    @PutMapping("/{id}/activar")
+    public ResponseEntity<Map<String, Object>> activar(@PathVariable Integer id) {
+        service.activar(id);
+
+        Map<String, Object> response = new HashMap<>();
+        response.put("mensaje", "Especialidad activada correctamente");
+        response.put("id", id);
+
+        return ResponseEntity.ok(response);
     }
+
+@DeleteMapping("/{id}/desactivar")
+public ResponseEntity<Map<String, Object>> eliminar(@PathVariable Integer id) {
+    service.eliminar(id);
+
+    Map<String, Object> response = new HashMap<>();
+    response.put("mensaje", "Especialidad desactivada correctamente");
+    response.put("id", id);
+
+    return ResponseEntity.ok(response);
+}
+
 }
 

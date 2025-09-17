@@ -8,7 +8,8 @@ import java.util.List;
 
 public interface IBloqueHorarioService {
 
-    List<BloqueHorarioSalida> listar();
+    List<BloqueHorarioSalida> listar();           // activos
+    List<BloqueHorarioSalida> listarInactivos();  // inactivos
 
     BloqueHorarioSalida buscarPorId(Integer id);
 
@@ -16,5 +17,8 @@ public interface IBloqueHorarioService {
 
     BloqueHorarioSalida modificar(BloqueHorarioModificar dto);
 
-    void eliminar(Integer id);
+    void eliminar(Integer id); // 🔹 desactivar
+
+    void activar(Integer id);  // 🔹 reactivar
 }
+

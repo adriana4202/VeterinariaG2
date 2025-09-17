@@ -2,7 +2,6 @@ package org.esfe.modelos;
 
 import jakarta.persistence.*;
 import lombok.*;
-
 import java.time.LocalTime;
 
 @Entity
@@ -23,4 +22,8 @@ public class BloqueHorario {
 
     @Column(name = "Fin", nullable = false)
     private LocalTime fin;
+
+    @Column(name = "Activo", nullable = false)
+    private Boolean activo = true; // 🔹 eliminación lógica
 }
+
